@@ -10,3 +10,6 @@
 [submodule "Definitions"]
 	path = Definitions
 	url = https://github.com/MeetXTelegram/Definitions.git
+[submodule "PSQLW"]
+	path = PSQLW
+	url = https://github.com/MeetXTelegram/PSQLWrapper
