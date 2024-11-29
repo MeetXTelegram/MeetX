@@ -1,0 +1,12 @@
+[submodule "ArgsHandler"]
+	path = ArgsHandler
+	url = https://github.com/MeetXTelegram/ArgsHandler.git
+[submodule "BuildScripts"]
+	path = BuildScripts
+	url = https://github.com/MeetXTelegram/BuildScripts.git
+[submodule "Types"]
+	path = Types
+	url = https://github.com/MeetXTelegram/Types.git
+[submodule "Definitions"]
+	path = Definitions
+	url = https://github.com/MeetXTelegram/Definitions.git
