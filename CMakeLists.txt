@@ -27,4 +27,4 @@ install(TARGETS MeetX
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_link_libraries(MeetX PRIVATE ArgsHandler Definitions PSQLWrapper spdlog::spdlog)
+target_link_libraries(MeetX PRIVATE ArgsHandler Definitions PSQLWrapper libpqxx.so spdlog::spdlog)
