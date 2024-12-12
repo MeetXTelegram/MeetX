@@ -1,6 +1,8 @@
 #pragma once
 
 #include <csignal>
+#include <chrono>
+#include <sstream>
 
 #include <spdlog/spdlog.h>
 
@@ -9,17 +11,34 @@
 #include <PSQLWrapper.hpp>
 
 namespace init {
+    static const std::string meetxFolder = std::string(std::getenv("HOME") + std::string("/.meetx"));
+    static const std::string meetxLogsFolder = meetxFolder + "/logs";
+    static const std::string meetxTranslationsFolder = meetxFolder + "/translations";
+
     inline void initLoggers() {
+        auto nowTime = std::chrono::system_clock::now();
+        auto nowTime_C = std::chrono::system_clock::to_time_t(nowTime);
+        std::ostringstream formattedTime; formattedTime << std::put_time(std::localtime(&nowTime_C), "%F_%H_%M");
+
         auto stdoutSink = createStdoutSink;
-        auto fileSink = createFileSink("/home/username000101/SPDLOG_MEETX_TEST.txt");
+        auto fileSink = createFileSink(meetxLogsFolder + "/MEETX_LOG_" + formattedTime.str());
+
         loggingUtils::createLogger("SignalHandler", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("MAIN_LOGGER", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("ArgsHandler", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("TerminateHandler", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("PSQL", stdoutSink, fileSink, spdlog::level::trace);
+        loggingUtils::createLogger("MLSystem", stdoutSink, fileSink, spdlog::level::trace);
     }
 
     inline void MeetXInit(ah::Args& argsHandler) {
+        if (!std::filesystem::exists(meetxFolder))
+            std::filesystem::create_directory(meetxFolder);
+        if (!std::filesystem::exists(meetxLogsFolder))
+            std::filesystem::create_directory(meetxLogsFolder);
+        if (!std::filesystem::exists(meetxTranslationsFolder))
+            std::filesystem::create_directory(meetxTranslationsFolder);
+
         std::signal(SIGUSR1, signalsUtils::SIGUSR1Handler);
         std::set_terminate(exceptionsUtils::TerminateHandler);
 
@@ -29,10 +48,12 @@ namespace init {
         }
         auto dbname = argsHandler.getArg("dbname").value().second;
 
+        /*
         if (!argsHandler.getArg("password").has_value()) {
             spdlog::log(spdlog::level::critical, "Failed to init MeetX: the \"password\" argument is not provided");
             std::raise(SIGUSR1);
         }
         auto password = argsHandler.getArg("password").value().second;
+        */
     }
 }
