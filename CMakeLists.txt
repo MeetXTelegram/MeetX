@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lc++")
 
 find_package(spdlog REQUIRED)
+find_package(PostgreSQL REQUIRED)
+find_package(libpqxx REQUIRED)
 
 add_subdirectory(ArgsHandler)
 add_subdirectory(Definitions)
@@ -28,4 +30,4 @@ install(TARGETS MeetX
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_link_libraries(MeetX PRIVATE ArgsHandler Definitions PSQLWrapper libpqxx.so spdlog::spdlog)
+target_link_libraries(MeetX PRIVATE ArgsHandler $<TARGET_OBJECTS:Definitions> PSQLWrapper libpqxx::pqxx spdlog::spdlog)
