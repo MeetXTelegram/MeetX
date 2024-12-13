@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include <spdlog/spdlog.h>
 
 #include <Args.hpp>
