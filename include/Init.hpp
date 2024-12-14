@@ -28,6 +28,7 @@ namespace init {
         loggingUtils::createLogger("ArgsHandler", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("TerminateHandler", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("PSQL", stdoutSink, fileSink, spdlog::level::trace);
+        loggingUtils::createLogger("TgBotBackend", stdoutSink, fileSink, spdlog::level::trace);
         loggingUtils::createLogger("MLSystem", stdoutSink, fileSink, spdlog::level::trace);
     }
 

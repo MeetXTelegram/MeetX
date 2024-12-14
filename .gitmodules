@@ -13,3 +13,7 @@
 [submodule "PSQLW"]
 	path = PSQLW
 	url = https://github.com/MeetXTelegram/PSQLWrapper
+[submodule "MeetXLogic"]
+	path = MeetXLogic
+	url = https://github.com/MeetXTelegram/MeetXLogic
+	branch = testing
