@@ -14,11 +14,13 @@ find_package(libpqxx REQUIRED)
 add_subdirectory(ArgsHandler)
 add_subdirectory(Definitions)
 add_subdirectory(PSQLW)
+add_subdirectory(MeetXLogic)
 
 include_directories(ArgsHandler/include)
 include_directories(Definitions/include)
 include_directories(PSQLW/include)
 include_directories(Types)
+include_directories(MeetXLogic/include)
 include_directories(include)
 
 
@@ -31,4 +33,4 @@ install(TARGETS MeetX
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_link_libraries(MeetX PRIVATE ArgsHandler Definitions PSQLWrapper libpqxx::pqxx spdlog::spdlog)
+target_link_libraries(MeetX PRIVATE ArgsHandler Definitions PSQLWrapper MeetXLogic libpqxx::pqxx spdlog::spdlog)
