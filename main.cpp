@@ -3,7 +3,6 @@
 #include <Args.hpp>
 #include <Definitions.hpp>
 #include <Init.hpp>
-#include <PSQLWrapper.hpp>
 
 int main(int argc, char* argv[]) {
     init::initLoggers();
