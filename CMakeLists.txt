@@ -10,6 +10,7 @@ find_package(spdlog REQUIRED)
 find_package(PostgreSQL REQUIRED)
 find_package(libpqxx REQUIRED)
 
+
 add_subdirectory(ArgsHandler)
 add_subdirectory(Definitions)
 add_subdirectory(PSQLW)
